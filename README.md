@@ -1,9 +1,13 @@
-# Project Sidecar
+# Project Sidecar &nbsp; ![Alpha](https://img.shields.io/badge/status-alpha%2Fbeta-orange?style=flat-square) ![PoC](https://img.shields.io/badge/stage-proof--of--concept-red?style=flat-square)
 
 > [!WARNING]
-> **This project is currently a Proof of Concept (PoC) and is under heavy active development. More features are currently broken than working.** It is not yet intended for general production use. THIS WAS CREATED BY A DUDE AND AI BASICALLY BUILT THIS I WILL NOT LIE OR TRY TO BE DECEPTIVE. PLEASE SUPPORT TAPIOCA FOX AND OTHER REAL DEVS PLEASE. 
+> 🚧 **Alpha / Beta — Proof of Concept.** This project is under heavy active development. More features are currently broken than working. Expect crashes, missing UI elements, and incomplete functionality. **Not intended for general production use.**
 
-Project Sidecar is a premium console-like game launcher and library frontend for Windows, meticulously optimized for handheld PCs WITH WINDOWS 11 (like the ROG Ally, Steam Deck, and Lenovo Legion Go) and controllers. **It is heavily influenced by the aesthetic, layout, and theme structure of the popular Android launcher Daijishō**, adapting its premium visual design language to deliver a high-performance 1080p 120Hz dashboard for all your PC games and emulated classics.
+Project Sidecar is a Windows game launcher frontend for handheld PCs like the ROG Ally, Steam Deck, and Lenovo Legion Go. It is heavily inspired by Daijishō on Android — built to bring that same console-like experience to Windows, with full controller navigation, platform artwork, emulator management, and game metadata scraping.
+
+Built on **Avalonia UI** (.NET 8).
+
+A huge thank you to the Daijishō team and community. Their work was the entire inspiration for this project. Please go support them: [github.com/magneticchen/Daijishou](https://github.com/magneticchen/Daijishou)
 
 ---
 
@@ -67,14 +71,32 @@ dotnet run --project Sidecar.App/Sidecar.App.csproj
 
 ## ⚠️ Known Issues & Limitations
 
-* **YouTube Rate Limiting**: Extensive/rapid scraping of theme music tracks may trigger temporary HTTP 429 Rate Limiting from YouTube search endpoints. The app includes a 1.5-second scroll debounce to prevent spamming queries.
-* **Aspect Ratio Variations in Themes**: Certain custom community Daijishō themes use background wallpapers that might crop or stretch on ultra-wide screens or non-16:9 displays.
-* **Simulated Google Drive Backups**: The cloud backup link utilizes a local web server (loopback on port `50352`) and is running in high-fidelity simulation mode. Real sync requires registering custom production developer API credentials.
-* **BIOS Hashing Check**: Emulation BIOS verification checks against specific SHA-256 signatures. Custom system variations (e.g. modified bios dumps) may report as "Not configured" even if functionally compatible.
-MANY OTHER ISSUES I REALLY HOPE YOU UNDERSTAND THIS.
-I AM WORKING ON THESE ISSUES AS SOON 
+* **Controller navigation** is still imperfect in many views — some buttons may not respond correctly
+* **Carousel centering** can still shift on first and last cards in certain scenarios
+* **Daijishō theme import** — wallpapers load but full theme color/accent pipeline is only partially wired
+* **YouTube music scraper** may return no result for obscure or very old game titles
+* **YouTube rate limiting** (HTTP 429) can occur during rapid game browsing
+* **Aspect ratio on non-16:9 displays** — theme wallpapers may crop or stretch
+* **Google Drive Backup** is a simulated flow — no real cloud sync without production API credentials
+* **Daijishō backup import** from Android — UI stubbed, not implemented
+* **Save file converter** between emulators — not yet implemented
+* **Boot animation / custom loading screen** — file upload works, playback not fully wired
+* **Custom frontend fonts** — setting exists, not fully applied to all UI elements
+* **Resolution / refresh rate selector** — UI present, not fully applied at runtime
+* **Wallpaper Engine integration** for live wallpapers — planned, not started
+* **BIOS hash verification** may flag custom or region-variant BIOS dumps as unconfigured
+* **Emulator download URLs** may break if upstream GitHub release tags change
+* **Ryujinx** downloads from a community mirror due to original project shutdown — may become unavailable
+* **L1/R1 tab switching** between Library, Apps, and Settings — partially working, context-dependent
+* **RetroAchievements** — display wired, live achievement tracking not fully implemented
+* **Global `.exe` search** — basic implementation, deep scan may miss certain install locations
+* **Microsoft Edge block** — best-effort only, cannot prevent all Edge invocations at OS level
+* **Device detection / screen optimization** — runs once on first boot, manual adjustment needed for edge cases
+* **Setup wizard emulator downloads** — some emulators may still fail on first attempt due to network timing
+
 ---
 
 ## 📜 License
 
 This project is licensed under the permissive MIT License. See [LICENSE](LICENSE) for details.
+
